@@ -27,6 +27,18 @@
 //         }
 //     </script> -->
 
+function appendMessage(text,  sender){
+    const msgDiv =document.createElement("div");
+    msgDiv.classList.add("message", sender);
+
+    const textBubble=document.createElement("span");
+    textBubble.classList.add("text-bubble");
+    textBubble.textContent=text;
+
+    msgDiv.appendChild(textBubble);
+    chatbox.appendChild(msgDiv);
+}
+
 function sendMessage(){
     const message=inputMessage.value.trim();
 
