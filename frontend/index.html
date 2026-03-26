@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Personal Trainer</title>
+    <style>
+        :root {
+            --primary-color: #d4ff00; /* Neonowa zieleń/żółć sportowa */
+            --bg-dark: #121212;
+            --chat-bg: #1e1e1e;
+            --text-light: #ffffff;
+            --text-dim: #a0a0a0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Kontener główny */
+        .chat-container {
+            width: 100%;
+            max-width: 500px;
+            height: 80vh;
+            background-color: var(--chat-bg);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid #333;
+        }
+
+        /* Nagłówek */
+        .chat-header {
+            padding: 20px;
+            background-color: #252525;
+            text-align: center;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .chat-header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Okno wiadomości */
+        #chat-window {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 15px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background-color: #333;
+            color: var(--text-light);
+            border-bottom-left-radius: 2px;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background-color: var(--primary-color);
+            color: #000;
+            font-weight: 500;
+            border-bottom-right-radius: 2px;
+        }
+
+        /* Pole wprowadzania */
+        .input-area {
+            padding: 20px;
+            display: flex;
+            gap: 10px;
+            background-color: #252525;
+        }
+
+        input[type="text"] {
+            flex-grow: 1;
+            background-color: #333;
+            border: 1px solid #444;
+            padding: 12px;
+            border-radius: 10px;
+            color: white;
+            outline: none;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--primary-color);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 0 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* Scrollbar */
+        #chat-window::-webkit-scrollbar {
+            width: 6px;
+        }
+        #chat-window::-webkit-scrollbar-thumb {
+            background-color: #444;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="chat-container">
+        <div id="chatbox" class="chat-header">
+            <h1>Coach AI ⚡</h1>
+        </div>
+
+        <div id="chat-window">
+            <div class="message bot-message">
+                Hello! I'am your ai assistant. How can I help you?
+            </div>
+        </div>
+
+        <div class="input-area">
+            <input type="text" id="inputMessage" placeholder="Write question..." autocomplete="off">
+            <button id="sendBtn">Send</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <!-- <script>
+        const form = document.getElementById('chat-form');
+        const input = document.getElementById('user-input');
+        const chatWindow = document.getElementById('chat-window');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const message = input.value.trim();
+            
+            if (message) {
+                addMessage(message, 'user-message');
+                input.value = '';
+                
+                // Tutaj później dodasz logikę wysyłania do API Twojego bota
+                setTimeout(() => {
+                    addMessage("Zrozumiałem. Przygotowuję Twój plan...", 'bot-message');
+                }, 1000);
+            }
+        });
+
+        function addMessage(text, className) {
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('message', className);
+            msgDiv.innerText = text;
+            chatWindow.appendChild(msgDiv);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+    </script> -->
+</body>
+</html>
