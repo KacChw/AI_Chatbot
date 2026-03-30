@@ -27,7 +27,7 @@
         /* Kontener główny */
         .chat-container {
             width: 100%;
-            max-width: 500px;
+            max-width: 800px;
             height: 80vh;
             background-color: var(--chat-bg);
             border-radius: 20px;
@@ -63,27 +63,57 @@
             gap: 15px;
         }
 
+        /* Układ pojedynczej wiadomości (awatar + dymek) */
         .message {
             max-width: 80%;
-            padding: 12px 16px;
-            border-radius: 15px;
-            font-size: 0.95rem;
-            line-height: 1.4;
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
         }
 
         .bot-message {
             align-self: flex-start;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            flex-direction: row-reverse; /* Awatar użytkownika po prawej stronie */
+        }
+
+        /* Wygląd samego tekstu w dymku */
+        .text-bubble {
+            padding: 12px 16px;
+            border-radius: 15px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            word-break: break-word;
+        }
+
+        .bot-message .text-bubble {
             background-color: #333;
             color: var(--text-light);
             border-bottom-left-radius: 2px;
         }
 
-        .user-message {
-            align-self: flex-end;
+        .user-message .text-bubble {
             background-color: var(--primary-color);
             color: #000;
             font-weight: 500;
             border-bottom-right-radius: 2px;
+        }
+
+        /* Styl dla awatarów */
+        .chat-logo {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 2px solid #444;
+        }
+
+        .user-message .chat-logo {
+            border-color: var(--primary-color);
         }
 
         /* Pole wprowadzania */
@@ -121,6 +151,11 @@
         button:active {
             transform: scale(0.95);
         }
+        
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
 
         /* Scrollbar */
         #chat-window::-webkit-scrollbar {
@@ -135,49 +170,20 @@
 <body>
 
     <div class="chat-container">
-        <div id="chatbox" class="chat-header">
+        <div class="chat-header">
             <h1>Coach AI ⚡</h1>
         </div>
 
         <div id="chat-window">
-            <div class="message bot-message">
-                Hello! I'am your ai assistant. How can I help you?
             </div>
-        </div>
 
         <div class="input-area">
             <input type="text" id="inputMessage" placeholder="Write question..." autocomplete="off">
             <button id="sendBtn">Send</button>
         </div>
     </div>
+    
     <script src="script.js"></script>
-    <!-- <script>
-        const form = document.getElementById('chat-form');
-        const input = document.getElementById('user-input');
-        const chatWindow = document.getElementById('chat-window');
 
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const message = input.value.trim();
-            
-            if (message) {
-                addMessage(message, 'user-message');
-                input.value = '';
-                
-                // Tutaj później dodasz logikę wysyłania do API Twojego bota
-                setTimeout(() => {
-                    addMessage("Zrozumiałem. Przygotowuję Twój plan...", 'bot-message');
-                }, 1000);
-            }
-        });
-
-        function addMessage(text, className) {
-            const msgDiv = document.createElement('div');
-            msgDiv.classList.add('message', className);
-            msgDiv.innerText = text;
-            chatWindow.appendChild(msgDiv);
-            chatWindow.scrollTop = chatWindow.scrollHeight;
-        }
-    </script> -->
 </body>
 </html>
